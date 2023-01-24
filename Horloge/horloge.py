@@ -12,8 +12,16 @@ morning_afternoon = "" # AM/PM
 # Actualise l'heure chaque secondes
 def afficher_heure(hours_input,minutes_input,seconds_input,morning_afternoon):
     hours = int(hours_input)
+    hours_print = int(hours_input)
     minutes = int(minutes_input)
     seconds = int(seconds_input)
+
+    print("Choisir le mode d'affichage 12h ou 24h ? 12/24")
+    am_pm_input = input()
+    if am_pm_input == "12":
+        mode12_24 = 12
+    elif am_pm_input == "24":
+        mode12_24 = 24
     
     while True:
         if seconds == 60:
@@ -27,70 +35,97 @@ def afficher_heure(hours_input,minutes_input,seconds_input,morning_afternoon):
         if hours == 24:
             hours = 0
         if hours >= 12:
-            morning_afternoon = "PM"
-            if hours == 13:
-                hours_print = 1
-            elif hours == 14:
-                hours_print = 2
-            if hours == 15:
-                hours_print = 3
-            if hours == 16:
-                hours_print = 4
-            if hours == 17:
-                hours_print = 5
-            if hours == 18:
-                hours_print = 6
-            if hours == 19:
-                hours_print = 7
-            if hours == 20:
-                hours_print = 8
-            if hours == 21:
-                hours_print = 9
-            if hours == 22:
-                hours_print = 10
-            if hours == 23:
-                hours_print = 11
+            if mode12_24 == 12:
+                morning_afternoon = "PM"
+                if hours == 13:
+                    hours_print = 1
+                elif hours == 14:
+                    hours_print = 2
+                elif hours == 15:
+                    hours_print = 3
+                elif hours == 16:
+                    hours_print = 4
+                elif hours == 17:
+                    hours_print = 5
+                elif hours == 18:
+                    hours_print = 6
+                elif hours == 19:
+                    hours_print = 7
+                elif hours == 20:
+                    hours_print = 8
+                elif hours == 21:
+                    hours_print = 9
+                elif hours == 22:
+                    hours_print = 10
+                elif hours == 23:
+                    hours_print = 11
+            elif mode12_24 == 24:
+                morning_afternoon = ""
+                if hours == 13:
+                    hours_print = 13
+                elif hours == 14:
+                    hours_print = 14
+                elif hours == 15:
+                    hours_print = 15
+                elif hours == 16:
+                    hours_print = 16
+                elif hours == 17:
+                    hours_print = 17
+                elif hours == 18:
+                    hours_print = 18
+                elif hours == 19:
+                    hours_print = 19
+                elif hours == 20:
+                    hours_print = 20
+                elif hours == 21:
+                    hours_print = 21
+                elif hours == 22:
+                    hours_print = 22
+                elif hours == 23:
+                    hours_print = 23
         if hours == 12:
-            morning_afternoon = "PM"
+            if mode12_24 == 12:
+                morning_afternoon = "PM"
+            elif mode12_24 == 24:
+                morning_afternoon = ""
         if hours <= 12:
-            morning_afternoon = "AM"
-            if hours == 0:
-                hours_print = 0
-            elif hours == 1:
-                hours_print = 1
-            if hours == 2:
-                hours_print = 2
-            if hours == 3:
-                hours_print = 3
-            if hours == 4:
-                hours_print = 4
-            if hours == 5:
-                hours_print = 5
-            if hours == 6:
-                hours_print = 6
-            if hours == 7:
-                hours_print = 7
-            if hours == 8:
-                hours_print = 8
-            if hours == 9:
-                hours_print = 9
-            if hours == 10:
-                hours_print = 10
+            if mode12_24 == 12:
+                morning_afternoon = "AM"
+            elif mode12_24 == 24:
+                morning_afternoon = ""
+                if hours == 0:
+                    hours_print = 0
+                elif hours == 1:
+                    hours_print = 1
+                elif hours == 2:
+                    hours_print = 2
+                elif hours == 3:
+                    hours_print = 3
+                elif hours == 4:
+                    hours_print = 4
+                elif hours == 5:
+                    hours_print = 5
+                elif hours == 6:
+                    hours_print = 6
+                elif hours == 7:
+                    hours_print = 7
+                elif hours == 8:
+                    hours_print = 8
+                elif hours == 9:
+                    hours_print = 9
+                elif hours == 10:
+                    hours_print = 10
+                elif hours == 11:
+                    hours_print = 11
         print(str(hours_print) + ":" + "{:02d}".format(minutes) + ":" + "{:02d}".format(seconds) + " " + morning_afternoon)
         seconds += 1
         t.sleep(1)
 
 # Régler l'heure
 def set_hours():
-    print("Heure par défaut:")
     i = 0
     while True:
-        time_now = datetime.now()
-        current_time = time_now.strftime("%H:%M:%S")
-        t.sleep(1)
-        print(current_time)
-        i += 1
-        if i == 1:
+        if i == 0:
             print("Voulez vous régler l'heure ? Y/N")
             user_settings = input()
             if user_settings == "Y":
