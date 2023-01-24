@@ -1,28 +1,14 @@
-from tkinter import *
 import time as t
+from datetime import datetime
 
-root = Tk()
-root.title("Horloge - Christopher CORNET")
-root.geometry('550x400')
-root.iconbitmap('temps.ico')
-root.config(bg='#535386')
+list_hours = []
+tuple_hours = tuple(list_hours)
 
-# Affiche l'heure
-display_time = Label(root,font=('Helvetica',50,'bold'),bg='#7A7AC5',fg="#FFFF7F",anchor='center', width=5)
-display_time.place(x=170, y=30)
-
-# Indication format de l'heure
-hourFormat = Label(root, text='Format: HH:MM:SS', fg='gray', bg='white', font=('Helvetica',10,'bold'), width=16)
-hourFormat.place(x=10, y=200)
-
-# Entrée de l'heure
-hour = Entry(root, width=19, font=('Helvetica',10,'bold'), justify='center')
-hour.place(x=10, y=240)
-
-def afficher_heure():
-    hours = 10
-    minutes = 30
-    seconds = 0
+# Actualise l'heure chaque secondes
+def afficher_heure(hours_input,minutes_input,seconds_input):
+    hours = int(hours_input)
+    minutes = int(minutes_input)
+    seconds = int(seconds_input)
     while True:
         if seconds == 60:
             seconds = 0
@@ -38,9 +24,33 @@ def afficher_heure():
         seconds += 1
         t.sleep(1)
 
-afficher_heure()
-
-settingsButton = Button(root, bg='#7A7AC5', font=('Helvetica',12,'bold'), fg='#FFFF7F', text="Changer l'heure", command=afficher_heure)
-settingsButton.place(x=10, y=150)
-
-root.mainloop()
+# Régler l'heure
+def set_hours():
+    print("Heure par défaut:")
+    i = 0
+    while True:
+        c = datetime.now()
+        current_time = c.strftime("%H:%M:%S")
+        t.sleep(1)
+        print(current_time)
+        i += 1
+        if i == 5:
+            print("Voulez vous régler l'heure ? y/n")
+            user_settings = input()
+            if user_settings == "y":
+                hours_input = input("Heures:")
+                list_hours.append(hours_input)
+                minutes_input = input("Minutes:")
+                list_hours.append(minutes_input)
+                seconds_input = input("Secondes:")
+                list_hours.append(seconds_input)
+                afficher_heure(hours_input,minutes_input,seconds_input) # Heure configurée
+            elif user_settings == "n":
+                print("Heure par défaut:")
+                while True:
+                    c = datetime.now()
+                    current_time = c.strftime("%H:%M:%S")
+                    print(current_time)
+                    t.sleep(1)
+        
+set_hours()
