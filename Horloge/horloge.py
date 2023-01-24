@@ -55,27 +55,27 @@ def afficher_heure(hours_input,minutes_input,seconds_input,morning_afternoon):
         if hours <= 12:
             morning_afternoon = "AM"
             if hours == 0:
-                hours_print = 1
+                hours_print = 0
             elif hours == 1:
-                hours_print = 2
+                hours_print = 1
             if hours == 2:
-                hours_print = 3
+                hours_print = 2
             if hours == 3:
-                hours_print = 4
+                hours_print = 3
             if hours == 4:
-                hours_print = 5
+                hours_print = 4
             if hours == 5:
-                hours_print = 6
+                hours_print = 5
             if hours == 6:
-                hours_print = 7
+                hours_print = 6
             if hours == 7:
-                hours_print = 8
+                hours_print = 7
             if hours == 8:
-                hours_print = 9
+                hours_print = 8
             if hours == 9:
-                hours_print = 10
+                hours_print = 9
             if hours == 10:
-                hours_print = 11
+                hours_print = 10
         print(str(hours_print) + ":" + "{:02d}".format(minutes) + ":" + "{:02d}".format(seconds) + " " + morning_afternoon)
         seconds += 1
         t.sleep(1)
