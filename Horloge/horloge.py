@@ -3,10 +3,6 @@ from datetime import datetime
 
 list_hours = []
 
-def alarm(alarm_hour, alarm_minutes, alarm_seconds):
-    if set_hours == 10: 
-        print("Alarme déclenchée ! Il est:", alarm_hour, ":", alarm_minutes, ":", alarm_seconds)
-
 morning_afternoon = "" # AM/PM
 
 # Actualise l'heure chaque secondes
@@ -137,11 +133,7 @@ def set_hours():
                 list_hours.append(seconds_input)
                 afficher_heure(hours_input,minutes_input,seconds_input,morning_afternoon) # Heure configurée
             elif user_settings == "N":
-                print("Heure par défaut:")
                 while True:
-                    time_now = datetime.now()
-                    current_time = time_now.strftime("%H:%M:%S")
-                    print(current_time)
-                    t.sleep(1)
+                    afficher_heure(9,30,0,"AM")
         
 set_hours()
