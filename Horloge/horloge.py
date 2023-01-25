@@ -30,6 +30,10 @@ def afficher_heure(hours_input,minutes_input,seconds_input,morning_afternoon):
                 hours += 1
         if hours == 24:
             hours = 0
+        if hours == 0:
+            if mode12_24 == 12:
+                morning_afternoon = "AM"
+                hours_print = 12
         if hours >= 12:
             if mode12_24 == 12:
                 morning_afternoon = "PM"
@@ -90,7 +94,7 @@ def afficher_heure(hours_input,minutes_input,seconds_input,morning_afternoon):
             elif mode12_24 == 24:
                 morning_afternoon = ""
                 if hours == 0:
-                    hours_print = 0
+                    hours_print = 12
                 elif hours == 1:
                     hours_print = 1
                 elif hours == 2:
